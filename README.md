@@ -30,3 +30,9 @@ Then launch MultiCode.py and write the path to the file.
 Launch MultiCode.py and write the filename "Example" with the Example file in the same directory than MultiCode.py.
 
 Multicode.py should create different new files : Example.c Example.py ...
+
+# To Do
+
+Use #DEFINE_PATH_TYPE_CODE#c#path to change the path to create the new .c file.
+
+Use #DEFINE_NAME_FILE_TYPE_CODE#c#newName to change the name of the created .c file. 

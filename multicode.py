@@ -21,7 +21,7 @@ def main():
 			for word in define:
 				if word == 'DEFINE_PATH_TYPE_CODE' and len(define) >= define.index(word)+2:
 					nameCode = '.' + str(define[define.index(word)+1])
-					pathNewFile = str(define[define.index(word)+2]) + nameCode
+					pathNewFile = str(define[define.index(word)+2]) + nameFileNoExt + nameCode
 				if word == 'DEFINE_TYPE_CODE' and len(define) > define.index(word):
 					nameCode = '.' + str(define[define.index(word)+1])
 					if pathNewFile == None:

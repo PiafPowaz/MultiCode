@@ -3,15 +3,21 @@
 # -*- coding: utf-8 -*-
 
 def main():
-	nameFile = raw_input('Name file :')
-	nameFileNoExt = nameFile.split('.')[0]
+	fullPathFile = raw_input("File's path :")
+	pathFileNoExt = fullPathFile.split('.')[0]
+	nameFileNoExt = pathFileNoExt.split('\\')[-1]
+	pathFile = '/'.join(pathFileNoExt.split('\\')[:-1]) + '/'
+	if pathFile == []:
+		pathFile = '/'.join(pathFileNoExt.split('/')[:-1]) + '/'
+		nameFileNoExt = pahtFileNoExt.split('/')[-1]
 	newF = None
 	fileClosed = True
 	totNewFile = 0
-	pathNewFiles = []
-	pathNewFile = None
+	fullPathNewFiles = []
+	pathNewFile = pathFile
 	nameNewFile = None
-	with open(nameFile, 'r') as f:
+	fullPathNewFile = None
+	with open(fullPathFile, 'r') as f:
 		for line in f:
 			define = line.split('#')
 			if fileClosed:
@@ -24,19 +30,22 @@ def main():
 					if nameNewFile == None:
 						nameCode = '.' + str(define[define.index(word)+1])
 						nameNewFile = nameFileNoExt + nameCode
-					pathNewFile = str(define[define.index(word)+2]) + nameNewFile
+					pathNewFile = str(define[define.index(word)+2])
+					fullPathNewFile = pathNewFile + nameNewFile
 				if word == 'DEFINE_NAME_FILE_TYPE_CODE' and len(define) >= define.index(word)+2:
 					nameCode = '.' + str(define[define.index(word)+1])
 					nameNewFile = str(define[define.index(word)+2]) + nameCode
+					fullPathNewFile = pathNewFile + nameNewFile
 				if word == 'DEFINE_TYPE_CODE' and len(define) > define.index(word):
-					if pathNewFile == None:
+					if fullPathNewFile == None:
 						if nameNewFile == None:
 							nameCode = '.' + str(define[define.index(word)+1])
 							nameNewFile = nameFileNoExt + nameCode
-						pathNewFile = nameNewFile
-					newF = open(pathNewFile, 'w')
+							pathNewFile = pathFile
+						fullPathNewFile = pathNewFile + nameNewFile
+					newF = open(fullPathNewFile, 'w')
 					totNewFile += 1
-					pathNewFiles.append(pathNewFile)
+					fullPathNewFiles.append(fullPathNewFile)
 					fileClosed = False
 					firstLine = True
 				if word == 'END_DEFINE_TYPE_CODE' and len(define) > define.index(word):
@@ -44,16 +53,17 @@ def main():
 						newF.close()
 						nameCode = None
 						fileClosed = True
-						pathNewFile = None
+						pathNewFile = pathFile
 						nameNewFile = None
+						fullPathNewFile = None
 			if newF != None and not fileClosed:
 				if not firstLine:
 					newF.write(line)
 				else:
 					firstLine = False
 		print('New files :', totNewFile)
-		for pathNewFile in pathNewFiles:
-			print(pathNewFile)
+		for fullPathNewFile in fullPathNewFiles:
+			print(fullPathNewFile)
 main()
 #sEND_DEFINE_TYPE_CODE#py
 #END_DEFINE_TYPE_CODE#py

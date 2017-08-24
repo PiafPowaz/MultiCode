@@ -7,7 +7,11 @@ Allow to use :
 
 #DEFINE_PATH_TYPE_CODE#c#path to change the path to create the new .c file
 
-#DEFINE_NAME_FILE_TYPE_CODE#c#newName to change the name of the created .c file. 
+#DEFINE_NAME_FILE_TYPE_CODE#c#newName to change the name of the created .c file.
+
+#1.1.1
+
+When #DEFINE_NAME_FILE_TYPE_CODE#c#newName is used and #DEFINE_PATH_TYPE_CODE#c#path is not, the new file is created in the default directory.
 
 # How to Use
 

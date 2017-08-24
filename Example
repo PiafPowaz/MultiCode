@@ -1,3 +1,4 @@
+#DEFINE_PATH_TYPE_CODE#py#Dir/
 #DEFINE_TYPE_CODE#py
 print("Hello word)
 #END_DEFINE_TYPE_CODE#py

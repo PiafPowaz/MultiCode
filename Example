@@ -1,0 +1,11 @@
+#DEFINE_TYPE_CODE#py
+print("Hello word)
+#END_DEFINE_TYPE_CODE#py
+#DEFINE_TYPE_CODE#c
+#include <stdio.h>
+
+int main()
+{
+  printf("Hello world");
+}
+#END_DEFINE_TYPE_CODE#c

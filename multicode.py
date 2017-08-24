@@ -9,6 +9,7 @@ def main():
 	fileClosed = True
 	totNewFile = 0
 	pathNewFiles = []
+	pathNewFile = None
 	with open(nameFile, 'r') as f:
 		for line in f:
 			define = line.split('#')
@@ -18,9 +19,13 @@ def main():
 				del define[-1]
 				define += last_word
 			for word in define:
+				if word == 'DEFINE_PATH_TYPE_CODE' and len(define) >= define.index(word)+2:
+					nameCode = '.' + str(define[define.index(word)+1])
+					pathNewFile = str(define[define.index(word)+2]) + nameCode
 				if word == 'DEFINE_TYPE_CODE' and len(define) > define.index(word):
 					nameCode = '.' + str(define[define.index(word)+1])
-					pathNewFile = nameFileNoExt+nameCode
+					if pathNewFile == None:
+						pathNewFile = nameFileNoExt+nameCode
 					newF = open(pathNewFile, 'w')
 					totNewFile += 1
 					pathNewFiles.append(pathNewFile)
@@ -31,6 +36,7 @@ def main():
 						newF.close()
 						nameCode = None
 						fileClosed = True
+						pathNewFile = None
 			if newF != None and not fileClosed:
 				if not firstLine:
 					newF.write(line)

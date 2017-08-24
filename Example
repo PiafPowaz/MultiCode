@@ -1,3 +1,4 @@
+#DEFINE_NAME_FILE_TYPE_CODE#py#newName
 #DEFINE_PATH_TYPE_CODE#py#Dir/
 #DEFINE_TYPE_CODE#py
 print("Hello word)

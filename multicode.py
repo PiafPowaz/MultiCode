@@ -10,6 +10,7 @@ def main():
 	totNewFile = 0
 	pathNewFiles = []
 	pathNewFile = None
+	nameNewFile = None
 	with open(nameFile, 'r') as f:
 		for line in f:
 			define = line.split('#')
@@ -20,12 +21,19 @@ def main():
 				define += last_word
 			for word in define:
 				if word == 'DEFINE_PATH_TYPE_CODE' and len(define) >= define.index(word)+2:
+					if nameNewFile == None:
+						nameCode = '.' + str(define[define.index(word)+1])
+						nameNewFile = nameFileNoExt + nameCode
+					pathNewFile = str(define[define.index(word)+2]) + nameNewFile
+				if word == 'DEFINE_NAME_FILE_TYPE_CODE' and len(define) >= define.index(word)+2:
 					nameCode = '.' + str(define[define.index(word)+1])
-					pathNewFile = str(define[define.index(word)+2]) + nameFileNoExt + nameCode
+					nameNewFile = str(define[define.index(word)+2]) + nameCode
 				if word == 'DEFINE_TYPE_CODE' and len(define) > define.index(word):
-					nameCode = '.' + str(define[define.index(word)+1])
 					if pathNewFile == None:
-						pathNewFile = nameFileNoExt+nameCode
+						if nameNewFile == None:
+							nameCode = '.' + str(define[define.index(word)+1])
+							nameNewFile = nameFileNoExt + nameCode
+						pathNewFile = nameNewFile
 					newF = open(pathNewFile, 'w')
 					totNewFile += 1
 					pathNewFiles.append(pathNewFile)
@@ -37,6 +45,7 @@ def main():
 						nameCode = None
 						fileClosed = True
 						pathNewFile = None
+						nameNewFile = None
 			if newF != None and not fileClosed:
 				if not firstLine:
 					newF.write(line)

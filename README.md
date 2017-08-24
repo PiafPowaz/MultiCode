@@ -3,7 +3,11 @@ Python code witch allow to use serveral programming languages.
 
 # 1.1.0
 
-Allow to use #DEFINE_PATH_TYPE_CODE#c#path to change the path to create the new .c file and #DEFINE_NAME_FILE_TYPE_CODE#c#newName to change the name of the created .c file. 
+Allow to use :
+
+#DEFINE_PATH_TYPE_CODE#c#path to change the path to create the new .c file
+
+#DEFINE_NAME_FILE_TYPE_CODE#c#newName to change the name of the created .c file. 
 
 # How to Use
 
@@ -15,7 +19,9 @@ Use #DEFINE_PATH_TYPE_CODE#c#path to change the path to create the new .c file.
 
 Use #DEFINE_NAME_FILE_TYPE_CODE#c#newName to change the name of the created .c file. 
 
-Example:
+# Example:
+
+Write this code into a new file :
 
 #DEFINE_NAME_FILE_TYPE_CODE#c#newName
 
@@ -33,6 +39,8 @@ int main()
   
 }
 
+
+Then launch MultiCode.py and write the path to the file.
 This Example create a file newName.c in the Dir directory and contains the code :
 
 #include <stdio.h>
@@ -47,10 +55,13 @@ int main()
 
 #END_DEFINE_TYPE_CODE#c
 
-Then launch MultiCode.py and write the path to the file.
-
-# Example
+# Main Example
 
 Launch MultiCode.py and write the filename "Example" with the Example file in the same directory than MultiCode.py.
 
 Multicode.py should create different new files : Example.c Example.py ...
+
+
+# To Do
+
+Waiting for new ideas.

@@ -11,3 +11,4 @@ int main()
   printf("Hello world");
 }
 #END_DEFINE_TYPE_CODE#c
+#OS_CMD#cd Dir

@@ -1,9 +1,14 @@
 #DEFINE_TYPE_CODE#py
 #sDEFINE_TYPE_CODE#py
 # -*- coding: utf-8 -*-
+import platform
+import os
 
 def main():
-	fullPathFile = raw_input("File's path :")
+	if int(platform.python_version_tuple()[0]) < 3:
+		fullPathFile = raw_input("File's path :")
+	else:
+		fullPathFile = input("File's path :")
 	pathFileNoExt = fullPathFile.split('.')[0]
 	nameFileNoExt = pathFileNoExt.split('\\')[-1]
 	pathFile = '/'.join(pathFileNoExt.split('\\')[:-1]) + '/'
@@ -14,6 +19,8 @@ def main():
 	fileClosed = True
 	totNewFile = 0
 	fullPathNewFiles = []
+	if pathFile == '/':
+		pathFile = ''
 	pathNewFile = pathFile
 	nameNewFile = None
 	fullPathNewFile = None
@@ -56,6 +63,8 @@ def main():
 						pathNewFile = pathFile
 						nameNewFile = None
 						fullPathNewFile = None
+				if word == 'OS_CMD' and len(define) > define.index(word):
+					os.system(str(define[define.index(word)+1]))
 			if newF != None and not fileClosed:
 				if not firstLine:
 					newF.write(line)
